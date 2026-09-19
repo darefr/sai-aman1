@@ -1,0 +1,254 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-heading);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Cream background */
+  --background: oklch(0.965 0.014 78);
+  /* Charcoal text */
+  --foreground: oklch(0.24 0.012 55);
+
+  --card: oklch(0.985 0.008 80);
+  --card-foreground: oklch(0.24 0.012 55);
+
+  --popover: oklch(0.985 0.008 80);
+  --popover-foreground: oklch(0.24 0.012 55);
+
+  /* Deep terracotta */
+  --primary: oklch(0.53 0.132 39);
+  --primary-foreground: oklch(0.975 0.014 80);
+
+  --secondary: oklch(0.93 0.02 75);
+  --secondary-foreground: oklch(0.3 0.03 45);
+
+  --muted: oklch(0.93 0.018 78);
+  --muted-foreground: oklch(0.5 0.02 55);
+
+  /* Warm accent */
+  --accent: oklch(0.9 0.035 65);
+  --accent-foreground: oklch(0.3 0.05 45);
+
+  /* Gold */
+  --gold: oklch(0.74 0.112 78);
+  --gold-foreground: oklch(0.26 0.03 60);
+
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.88 0.02 72);
+  --input: oklch(0.88 0.02 72);
+  --ring: oklch(0.53 0.132 39);
+}
+
+.dark {
+  /* Deep warm charcoal */
+  --background: oklch(0.19 0.008 55);
+  --foreground: oklch(0.94 0.012 78);
+
+  --card: oklch(0.235 0.01 52);
+  --card-foreground: oklch(0.94 0.012 78);
+
+  --popover: oklch(0.235 0.01 52);
+  --popover-foreground: oklch(0.94 0.012 78);
+
+  /* Warmer, brighter terracotta for dark surfaces */
+  --primary: oklch(0.63 0.14 42);
+  --primary-foreground: oklch(0.16 0.01 55);
+
+  --secondary: oklch(0.28 0.012 52);
+  --secondary-foreground: oklch(0.92 0.012 78);
+
+  --muted: oklch(0.28 0.012 52);
+  --muted-foreground: oklch(0.72 0.02 70);
+
+  --accent: oklch(0.34 0.03 55);
+  --accent-foreground: oklch(0.94 0.012 78);
+
+  --gold: oklch(0.79 0.12 82);
+  --gold-foreground: oklch(0.2 0.02 60);
+
+  --destructive: oklch(0.62 0.2 25);
+  --border: oklch(0.32 0.012 55);
+  --input: oklch(0.32 0.012 55);
+  --ring: oklch(0.63 0.14 42);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer utilities {
+  /* Scroll-triggered reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hide scrollbars on horizontal carousels */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Subtle premium lift on interactive cards */
+  .lift {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .lift:hover {
+    transform: translateY(-6px);
+  }
+
+  /* Smooth theme color transition when toggling dark mode */
+  .theme-transition,
+  .theme-transition * {
+    transition: background-color 0.5s ease, border-color 0.5s ease, color 0.35s ease;
+  }
+
+  /* Image zoom-on-hover wrapper */
+  .zoom-img {
+    overflow: hidden;
+  }
+  .zoom-img img {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  .group:hover .zoom-img img,
+  .zoom-img:hover img {
+    transform: scale(1.06);
+  }
+
+  /* Loading skeleton shimmer */
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: var(--muted);
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--foreground) 8%, transparent),
+      transparent
+    );
+    animation: shimmer 1.6s infinite;
+  }
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Accordion open/close animation */
+  .accordion-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .accordion-panel.open {
+    grid-template-rows: 1fr;
+  }
+  .accordion-panel > div {
+    overflow: hidden;
+  }
+
+  /* Animated underline links */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .lift:hover {
+      transform: none;
+    }
+    .animate-bounce {
+      animation: none;
+    }
+    .zoom-img img,
+    .group:hover .zoom-img img,
+    .zoom-img:hover img {
+      transform: none;
+      transition: none;
+    }
+    .skeleton::after {
+      animation: none;
+    }
+    .theme-transition,
+    .theme-transition * {
+      transition: none;
+    }
+  }
+}

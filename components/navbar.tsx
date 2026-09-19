@@ -9,14 +9,14 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { LanguageSwitcher } from '@/components/language-switcher'
 
 const links = [
-  { href: '/#about', key: 'nav.about', fallback: 'About' },
-  { href: '/#rooms', key: 'nav.rooms', fallback: 'Rooms' },
-  { href: '/#offers', key: 'nav.offers', fallback: 'Offers' },
-  { href: '/#gallery', key: 'nav.gallery', fallback: 'Gallery' },
-  { href: '/#dining', key: 'nav.dining', fallback: 'Dining' },
-  { href: '/#experiences', key: 'nav.experiences', fallback: 'Experiences' },
-  { href: '/#reviews', key: 'nav.reviews', fallback: 'Reviews' },
-  { href: '/#location', key: 'nav.location', fallback: 'Location' },
+  { href: '/about', key: 'nav.about', fallback: 'About' },
+  { href: '/rooms', key: 'nav.rooms', fallback: 'Rooms' },
+  { href: '/offers', key: 'nav.offers', fallback: 'Offers' },
+  { href: '/gallery', key: 'nav.gallery', fallback: 'Gallery' },
+  { href: '/dining', key: 'nav.dining', fallback: 'Dining' },
+  { href: '/experiences', key: 'nav.experiences', fallback: 'Experiences' },
+  { href: '/reviews', key: 'nav.reviews', fallback: 'Reviews' },
+  { href: '/location', key: 'nav.location', fallback: 'Location' },
 ]
 
 export function Navbar({ forceSolid = false }: { forceSolid?: boolean }) {
@@ -54,7 +54,7 @@ export function Navbar({ forceSolid = false }: { forceSolid?: boolean }) {
         <ul className="hidden items-center gap-6 xl:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <a
+              <Link
                 href={l.href}
                 className={cn(
                   'group relative text-sm font-medium transition-colors',
@@ -63,7 +63,7 @@ export function Navbar({ forceSolid = false }: { forceSolid?: boolean }) {
               >
                 {t(l.key, l.fallback)}
                 <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

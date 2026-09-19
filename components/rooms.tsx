@@ -18,6 +18,7 @@ import {
   ChevronRight,
 } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
+import { SectionCta } from '@/components/section-cta'
 import { useI18n } from '@/components/site-providers'
 import { Lightbox, type LightboxItem } from '@/components/lightbox'
 import { rooms, formatMoney, type Room, type RoomAmenity } from '@/lib/content'
@@ -33,7 +34,7 @@ const amenityMeta: Record<RoomAmenity, { icon: typeof Bath; label: string }> = {
   'room-service': { icon: ConciergeBell, label: 'Room service' },
 }
 
-export function Rooms() {
+export function Rooms({ viewAllHref }: { viewAllHref?: string }) {
   const { t } = useI18n()
 
   return (
@@ -58,6 +59,8 @@ export function Rooms() {
             </Reveal>
           ))}
         </div>
+
+        {viewAllHref && <SectionCta href={viewAllHref} label={t('rooms.viewAll', 'View all rooms')} />}
       </div>
     </section>
   )

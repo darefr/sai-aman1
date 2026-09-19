@@ -4,10 +4,11 @@ import Image from 'next/image'
 import { MapPin, Clock } from 'lucide-react'
 import { useI18n } from '@/components/site-providers'
 import { SectionHeading } from '@/components/section-heading'
+import { SectionCta } from '@/components/section-cta'
 import { Reveal } from '@/components/reveal'
 import { experiences } from '@/lib/content'
 
-export function Experiences() {
+export function Experiences({ viewAllHref }: { viewAllHref?: string }) {
   const { t } = useI18n()
 
   return (
@@ -55,6 +56,8 @@ export function Experiences() {
             </Reveal>
           ))}
         </div>
+
+        {viewAllHref && <SectionCta href={viewAllHref} label={t('exp.viewAll', 'All experiences')} />}
       </div>
     </section>
   )

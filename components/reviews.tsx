@@ -3,11 +3,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
+import { SectionCta } from '@/components/section-cta'
 import { useI18n } from '@/components/site-providers'
 import { hotel, reviews } from '@/lib/content'
 import { cn } from '@/lib/utils'
 
-export function Reviews() {
+export function Reviews({ viewAllHref }: { viewAllHref?: string }) {
   const { t } = useI18n()
   const [index, setIndex] = useState(0)
   const total = reviews.length
@@ -116,6 +117,8 @@ export function Reviews() {
             </button>
           </div>
         </Reveal>
+
+        {viewAllHref && <SectionCta href={viewAllHref} label={t('reviews.viewAll', 'Read all reviews')} />}
       </div>
     </section>
   )

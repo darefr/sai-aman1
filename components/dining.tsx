@@ -3,10 +3,11 @@
 import Image from 'next/image'
 import { Clock, UtensilsCrossed } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
+import { SectionCta } from '@/components/section-cta'
 import { useI18n } from '@/components/site-providers'
 import { dining } from '@/lib/content'
 
-export function Dining() {
+export function Dining({ viewAllHref }: { viewAllHref?: string }) {
   const { t } = useI18n()
 
   return (
@@ -60,6 +61,8 @@ export function Dining() {
             </Reveal>
           ))}
         </div>
+
+        {viewAllHref && <SectionCta href={viewAllHref} label={t('dining.viewAll', 'Explore dining')} />}
       </div>
     </section>
   )

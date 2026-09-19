@@ -2,10 +2,11 @@
 
 import Image from 'next/image'
 import { Reveal } from '@/components/reveal'
+import { SectionCta } from '@/components/section-cta'
 import { useI18n } from '@/components/site-providers'
 import { landmarks } from '@/lib/content'
 
-export function About() {
+export function About({ viewAllHref }: { viewAllHref?: string }) {
   const { t } = useI18n()
 
   const stats = [
@@ -69,6 +70,12 @@ export function About() {
           </ul>
         </Reveal>
       </div>
+
+      {viewAllHref && (
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <SectionCta href={viewAllHref} label={t('about.cta', 'Read our full story')} />
+        </div>
+      )}
     </section>
   )
 }

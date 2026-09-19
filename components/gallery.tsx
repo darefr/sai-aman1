@@ -5,11 +5,12 @@ import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { useI18n } from '@/components/site-providers'
 import { SectionHeading } from '@/components/section-heading'
+import { SectionCta } from '@/components/section-cta'
 import { Reveal } from '@/components/reveal'
 import { Lightbox, type LightboxItem } from '@/components/lightbox'
 import { gallery, galleryCategories, type GalleryCategory } from '@/lib/content'
 
-export function Gallery() {
+export function Gallery({ viewAllHref }: { viewAllHref?: string }) {
   const { t } = useI18n()
   const [filter, setFilter] = useState<GalleryCategory | 'all'>('all')
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
@@ -93,6 +94,8 @@ export function Gallery() {
             </Reveal>
           ))}
         </div>
+
+        {viewAllHref && <SectionCta href={viewAllHref} label={t('gallery.viewAll', 'Open full gallery')} />}
       </div>
 
       <Lightbox

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Clock } from 'lucide-react'
 import { useI18n } from '@/components/site-providers'
 import { SectionHeading } from '@/components/section-heading'
+import { SectionCta } from '@/components/section-cta'
 import { Reveal } from '@/components/reveal'
 import { offers, formatMoney } from '@/lib/content'
 
@@ -62,7 +63,7 @@ function Countdown({ iso }: { iso: string }) {
   )
 }
 
-export function Offers() {
+export function Offers({ viewAllHref }: { viewAllHref?: string }) {
   const { t } = useI18n()
 
   return (
@@ -130,6 +131,8 @@ export function Offers() {
             </Reveal>
           ))}
         </div>
+
+        {viewAllHref && <SectionCta href={viewAllHref} label={t('offers.viewAll', 'See all offers')} />}
       </div>
     </section>
   )

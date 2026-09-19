@@ -2,6 +2,7 @@
 
 import { MapPin, Navigation, Plane, Landmark as LandmarkIcon, Bus } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
+import { SectionCta } from '@/components/section-cta'
 import { useI18n } from '@/components/site-providers'
 import { hotel, landmarks } from '@/lib/content'
 
@@ -12,7 +13,7 @@ const landmarkIcons: Record<string, typeof MapPin> = {
   lumbini: LandmarkIcon,
 }
 
-export function Location() {
+export function Location({ viewAllHref }: { viewAllHref?: string }) {
   const { t } = useI18n()
 
   return (
@@ -83,6 +84,8 @@ export function Location() {
             </div>
           </Reveal>
         </div>
+
+        {viewAllHref && <SectionCta href={viewAllHref} label={t('location.viewAll', 'Location & directions')} />}
       </div>
     </section>
   )

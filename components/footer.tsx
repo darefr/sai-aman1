@@ -1,16 +1,17 @@
 'use client'
 
+import Link from 'next/link'
 import { Award, ArrowUpRight } from 'lucide-react'
 import { useI18n } from '@/components/site-providers'
 import { hotel, awards, sisterProperty } from '@/lib/content'
 
 const exploreLinks = [
-  { href: '#about', key: 'nav.about', fallback: 'About' },
-  { href: '#rooms', key: 'nav.rooms', fallback: 'Rooms' },
-  { href: '#offers', key: 'nav.offers', fallback: 'Offers' },
-  { href: '#gallery', key: 'nav.gallery', fallback: 'Gallery' },
-  { href: '#dining', key: 'nav.dining', fallback: 'Dining' },
-  { href: '#location', key: 'nav.location', fallback: 'Location' },
+  { href: '/about', key: 'nav.about', fallback: 'About' },
+  { href: '/rooms', key: 'nav.rooms', fallback: 'Rooms' },
+  { href: '/offers', key: 'nav.offers', fallback: 'Offers' },
+  { href: '/gallery', key: 'nav.gallery', fallback: 'Gallery' },
+  { href: '/dining', key: 'nav.dining', fallback: 'Dining' },
+  { href: '/location', key: 'nav.location', fallback: 'Location' },
 ]
 
 export function Footer() {
@@ -56,9 +57,9 @@ export function Footer() {
             <ul className="mt-4 flex flex-col gap-2.5">
               {exploreLinks.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="link-underline text-sm text-background/70 transition-colors hover:text-gold">
+                  <Link href={l.href} className="link-underline text-sm text-background/70 transition-colors hover:text-gold">
                     {t(l.key, l.fallback)}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

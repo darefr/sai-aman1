@@ -23,18 +23,18 @@ export default function Page() {
     <main id="top">
       <Navbar />
       <Hero />
-      <About />
+      <About viewAllHref="/about" />
       <Story />
       <Stats />
-      <Rooms />
+      <Rooms viewAllHref="/rooms" />
       <Amenities />
-      <Offers />
-      <Gallery />
-      <Dining />
-      <Experiences />
-      <Reviews />
+      <Offers viewAllHref="/offers" />
+      <Gallery viewAllHref="/gallery" />
+      <Dining viewAllHref="/dining" />
+      <Experiences viewAllHref="/experiences" />
+      <Reviews viewAllHref="/reviews" />
       <Blog />
-      <Location />
+      <Location viewAllHref="/location" />
       <Faq />
       <Newsletter />
       <Contact />
